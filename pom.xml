@@ -63,7 +63,7 @@
         <fastjson.version>1.1.41</fastjson.version>
 
         <!--mybatis-->
-        <mybatis-plus.version>2.1.9</mybatis-plus.version>
+        <mybatis-plus.version>2.2.0</mybatis-plus.version>
 
         <!--sharding-jdbc-->
         <sharding-jdbc.version>2.0.3</sharding-jdbc.version>
@@ -160,6 +160,11 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
 

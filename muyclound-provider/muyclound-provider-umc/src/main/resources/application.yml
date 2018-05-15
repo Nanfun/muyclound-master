@@ -1,20 +1,41 @@
+server:
+  port: ${muyclound.server.provider.uac.port:8000}
+  tomcat:
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+  use-forward-headers: true
 spring:
   application:
     name: @pom.artifactId@
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/,http://peer3:8763/eureka/
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-
-feign:
-  hystrix:
-    enabled: true
-
+  profiles:
+    active: @profileActive@
+  redis:
+    host: 127.0.0.1
+    password: xceof
+    port: 6379
+    timeout: 0
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/muyclound_umc?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&autoReconnectForPools=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    username: root
+    password: yanglikai
+    filters: stat,wall
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      web-stat-filter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      stat-view-servlet:
+        allow:
+        login-username: admin
+        login-password: admin
+info:
+  owner: muyclound.net@gmail.com
+  version: @project.version@
 muyclound:
   oauth2:
     jwtSigningKey: muyclound
