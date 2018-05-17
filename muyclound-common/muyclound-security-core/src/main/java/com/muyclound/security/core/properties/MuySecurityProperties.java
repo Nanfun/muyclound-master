@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "muyclound.security")
-public class SecurityProperties {
+public class MuySecurityProperties {
   /**
    * 浏览器环境配置
    */

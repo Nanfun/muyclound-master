@@ -18,6 +18,7 @@ feign:
 
 muyclound:
   oauth2:
+    jwtSigningKey: www.muyclound.com
     client:
       id: ${security.oauth2.resource.id}
       accessTokenUrl: ${security.oauth2.client.access-token-uri}

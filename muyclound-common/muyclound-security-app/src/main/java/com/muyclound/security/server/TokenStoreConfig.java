@@ -1,6 +1,6 @@
 package com.muyclound.security.server;
 
-import com.muyclound.security.core.properties.SecurityProperties;
+import com.muyclound.security.core.properties.MuySecurityProperties;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -49,7 +49,7 @@ public class TokenStoreConfig {
   public static class JwtConfig {
 
     @Resource
-    private SecurityProperties securityProperties;
+    private MuySecurityProperties muySecurityProperties;
 
     @Bean
     public TokenStore jwtTokenStore() {
@@ -59,7 +59,7 @@ public class TokenStoreConfig {
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
       JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-      converter.setSigningKey(securityProperties.getOauth2().getJwtSigningKey());
+      converter.setSigningKey(muySecurityProperties.getOauth2().getJwtSigningKey());
       return converter;
     }
 

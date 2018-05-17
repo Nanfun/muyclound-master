@@ -4,7 +4,6 @@ import com.muyclound.consumer.service.ConsumerService;
 import com.muyclound.dc.enums.EventEnum;
 import com.muyclound.dc.wrapper.LogWrapper;
 import com.muyclound.provider.service.OMCOrderFeignApi;
-import com.muyclound.provider.service.UMCMqMessageFeignApi;
 import com.muyclound.wrapper.WrapMapper;
 import com.muyclound.wrapper.Wrapper;
 import javax.annotation.Resource;
@@ -24,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class SimpleController {
   @Resource
-  private UMCMqMessageFeignApi umcMqMessageFeignApi;
-  @Resource
   private OMCOrderFeignApi omcOrderFeignApi;
   @Resource
   private ConsumerService consumerService;
@@ -33,10 +30,9 @@ public class SimpleController {
   @GetMapping("/consumer")
   @ResponseBody
   Wrapper<String> consumer() {
-    Wrapper<String> umcResult = umcMqMessageFeignApi.loadMessageKey("");
     Wrapper<String> omcResult = omcOrderFeignApi.loadOrderCode();
 
-    return WrapMapper.ok("UMCResult:" + umcResult.getResult() + ", OMCResult:" + omcResult.getResult());
+    return WrapMapper.ok("OMCResult:" + omcResult.getResult());
   }
 
   @GetMapping("/log")

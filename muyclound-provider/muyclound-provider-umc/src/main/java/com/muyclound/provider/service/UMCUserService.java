@@ -48,6 +48,9 @@ public class UMCUserService {
 
     UMCUserDO user = userRepository.selectOne(
         new EntityWrapper<UMCUserDO>().where("user_name={0}", username));
+    if (user == null) {
+      return null;
+    }
 
     /* 缓存用户信息 */
     redisService.setKey(key, JSONUtil.toJSON(user), RedisKey.UMC_USER_INFO.expired);

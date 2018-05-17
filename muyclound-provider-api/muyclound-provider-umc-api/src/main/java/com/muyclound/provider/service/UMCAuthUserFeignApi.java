@@ -37,4 +37,14 @@ public interface UMCAuthUserFeignApi {
   Wrapper<AuthUserDto> authSMS(
       @RequestParam("mobile") String mobile,
       @RequestParam("verifyCode") String verifyCode);
+
+  /**
+   * 用户名认证.
+   *
+   * @param username
+   * @return
+   */
+  @PostMapping(value = "/api/umc/auth/username")
+  Wrapper<AuthUserDto> authUsername(
+      @RequestParam("username") String username);
 }

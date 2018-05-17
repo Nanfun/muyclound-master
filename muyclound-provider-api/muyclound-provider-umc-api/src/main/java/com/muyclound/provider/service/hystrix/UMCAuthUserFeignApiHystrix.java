@@ -21,4 +21,9 @@ public class UMCAuthUserFeignApiHystrix implements UMCAuthUserFeignApi {
   public Wrapper<AuthUserDto> authSMS(String mobile, String verifyCode) {
     return null;
   }
+
+  @Override
+  public Wrapper<AuthUserDto> authUsername(String username) {
+    return null;
+  }
 }

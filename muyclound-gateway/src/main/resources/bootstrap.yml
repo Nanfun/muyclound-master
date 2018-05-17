@@ -1,4 +1,6 @@
 spring:
+  aop:
+    proxy-target-class: true
   cloud:
     inetutils:
       ignoredInterfaces:
@@ -8,8 +10,9 @@ spring:
       preferredNetworks:
         - 192.168
 security:
-  basic:
-    enabled: false
-  user:
-    name: root
-    password: root
+  oauth2:
+    client:
+      clientId: muyclound-client-gateway
+      clientSecret: muycloundClientSecret
+      access-token-uri: http://muyclound.com/oauth/token
+      user-authorization-uri: http://muyclound.com/oauth/authorize

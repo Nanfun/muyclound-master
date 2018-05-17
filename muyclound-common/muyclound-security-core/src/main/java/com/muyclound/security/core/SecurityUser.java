@@ -2,6 +2,7 @@ package com.muyclound.security.core;
 
 import java.util.Collection;
 import java.util.List;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * Created by yanglikai on 2018/4/18.
  */
 @Data
+@Builder
 public class SecurityUser implements UserDetails {
   private Long userId;
   private String userName;

@@ -1,5 +1,5 @@
 server:
-  port: ${muyclound.server.provider.uac.port:8000}
+  port: ${muyclound.server.provider.umc.port:8000}
   tomcat:
     uri-encoding: UTF-8
     remote-ip-header: x-forwarded-for
@@ -37,8 +37,11 @@ info:
   owner: muyclound.net@gmail.com
   version: @project.version@
 muyclound:
+  token:
+    interceptor:
+      enable: true
   oauth2:
-    jwtSigningKey: muyclound
+    jwtSigningKey: www.muyclound.com
     client:
       id: ${security.oauth2.resource.id}
       accessTokenUrl: ${security.oauth2.client.access-token-uri}

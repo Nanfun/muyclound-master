@@ -30,14 +30,26 @@ mybatis-plus:
     db-column-underline: true
   configuration:
     map-underscore-to-camel-case: true
+security:
+  oauth2:
+    client:
+      clientId: muyclound-client-umc
+      clientSecret: muycloundClientSecret
+      access-token-uri: http://muyclound.com/oauth/token
+      user-authorization-uri: http://muyclound.com/oauth/authorize
+    resource:
+      user-info-uri: http://muyclound.com/user
+      prefer-token-info: false
+      jwt:
+        key-uri: http://muyclound.com/oauth/token_key
 feign:
   hystrix:
     enabled: true
   client:
     config:
       default:
-        connectTimeout: 10000
-        readTimeout: 10000
+        connectTimeout: 5000
+        readTimeout: 5000
 ribbon:
   eager-load:
     enabled: true
@@ -45,7 +57,7 @@ ribbon:
   MaxAutoRetriesNextServer: 2
   OkToRetryOnAllOperations: false
   ConnectTimeout: 60000
-  ReadTimeout: 60000
+  ReadTimeout: 20000
 hystrix:
   propagate:
     request-attribute:
@@ -70,7 +82,3 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-
-security:
-  basic:
-    enabled: false

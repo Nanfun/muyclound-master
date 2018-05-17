@@ -22,6 +22,12 @@
             <artifactId>muyclound-provider-umc-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.muyclound</groupId>-->
+            <!--<artifactId>muyclound-security-app</artifactId>-->
+            <!--<version>${project.parent.version}</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>

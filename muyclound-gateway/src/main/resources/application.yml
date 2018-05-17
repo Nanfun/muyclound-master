@@ -1,6 +1,23 @@
-spring:
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+    multipart:
+      enabled: true
+      max-request-size: 50MB
+      max-file-size: 50MB
   application:
     name: @pom.artifactId@
+management:
+  security:
+    enabled: false
+info:
+  owner: muyclound.net@gmail.com
+  version: @project.version@
 eureka:
   client:
     registerWithEureka: true
@@ -10,8 +27,11 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-
 zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  forceOriginalQueryStringEncoding: true
   routes:
     umc-route:
       path: /umc/**
@@ -28,7 +48,6 @@ zuul:
       sensitiveHeaders:
       serviceId: muyclound-consumer-b2b
       stripPrefix: true
-
 hystrix:
   propagate:
     request-attribute:
@@ -41,7 +60,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 20000
-
 ribbon:
   eager-load:
     enabled: true
@@ -50,3 +68,33 @@ ribbon:
   OkToRetryOnAllOperations: false
   ConnectTimeout: 60000
   ReadTimeout: 60000
+muyclound:
+  token:
+    interceptor:
+      enable: true
+  oauth2:
+    jwtSigningKey: www.muyclound.com
+    client:
+      id: ${security.oauth2.resource.id}
+      accessTokenUrl: ${security.oauth2.client.access-token-uri}
+      clientId: ${security.oauth2.client.clientId}
+      clientSecret: ${security.oauth2.client.clientSecret}
+      clientAuthenticationScheme: header
+  security:
+    oauth2:
+          tokenStore: jwt
+          clients[0]:
+            clientId: paascloud-client-umc
+            clientSecret: muycloundClientSecret
+            accessTokenValidateSeconds: 7200
+            scope: "*"
+          clients[1]:
+            clientId: muyclound-client-gateway
+            clientSecret: muycloundClientSecret
+            accessTokenValidateSeconds: 7200
+            scope: "*"
+          clients[2]:
+            clientId: muyclound-client-b2b
+            clientSecret: muycloundClientSecret
+            accessTokenValidateSeconds: 7200
+            scope: "*"

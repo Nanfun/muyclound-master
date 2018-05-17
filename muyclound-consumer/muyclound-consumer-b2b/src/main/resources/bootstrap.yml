@@ -8,8 +8,14 @@ spring:
       preferredNetworks:
         - 192.168
 security:
-  basic:
-    enabled: false
-  user:
-    name: root
-    password: root
+  oauth2:
+    client:
+      clientId: muyclound-client-b2b
+      clientSecret: muycloundClientSecret
+      access-token-uri: http://muyclound.com/oauth/token
+      user-authorization-uri: http://muyclound.com/oauth/authorize
+    resource:
+      user-info-uri: http://muyclound.com/umc/user
+      prefer-token-info: false
+      jwt:
+        key-uri: http://muyclound.com/oauth/token_key
